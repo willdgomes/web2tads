@@ -3,24 +3,36 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package servlets;
+package com.ufpr.tads.web2.servlets.StartupServlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author gomes
  */
-@WebServlet(name = "LogoutServlet", urlPatterns = {"/LogoutServlet"})
-public class LogoutServlet extends HttpServlet {
+@WebServlet(name = "StartupServlet", urlPatterns = {"/StartupServlet"})
+public class StartupServlet extends HttpServlet {
 
+    
+    
+    public void init(ServletConfig config)
+            throws ServletException{
+        ConfigBean conf = new ConfigBean();
+        conf.setEmailAdmin("email@email.com");
+        ServletContext ctx = config.getServletContext();
+        ctx.setAttribute("configuracao", conf);
+    }
+    
+    
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -32,22 +44,19 @@ public class LogoutServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        HttpSession session = request.getSession(false);
-        if (session != null) {
-            session.invalidate();
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet StartupServlet</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet StartupServlet at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
         }
-        
-        response.setContentType(
-                    "text/html;charset=UTF-8");
-
-            PrintWriter out = response.getWriter();
-            out.println("<html><head>");
-            out.println("<title>Title</title></head><body>");
-            out.println("Usuario saiu do sistema!<br/>");
-            out.println("<a href=\"index.html\">Retornar para login</a>");
-            out.println("</body></html>");
-            out.close();
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

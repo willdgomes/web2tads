@@ -3,13 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package servlets;
+package com.ufpr.tads.web2.servlets.LogoutServlet;
 
-import Beans.Usuario;
-import DAO.UsuarioDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -21,8 +18,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author gomes
  */
-@WebServlet(name = "LoginServlet", urlPatterns = {"/LoginServlet"})
-public class LoginServlet extends HttpServlet {
+@WebServlet(name = "LogoutServlet", urlPatterns = {"/LogoutServlet"})
+public class LogoutServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,29 +33,21 @@ public class LoginServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        HttpSession session = request.getSession();
-        String login = request.getParameter("login");
-        String senha = request.getParameter("senha");
-        
-        Usuario usuario = new Usuario();
-        UsuarioDAO usuarioDAO = new UsuarioDAO();
-        usuario = usuarioDAO.lerUsuario(login, senha);
-        
-        if (usuario != null) {
-            session = request.getSession();
-            session.setAttribute("usuario", usuario);
-            session.setMaxInactiveInterval(20 * 60);
-            RequestDispatcher rd = null;
-            rd = getServletContext().getRequestDispatcher("/PortalServlet");
-            rd.include(request, response);
-        }else{
-            RequestDispatcher rd = request.
-                    getRequestDispatcher("ErroServlet");
-            request.setAttribute("msg", "Sessao expirou");
-            request.setAttribute("page", "index.html");
-            rd.forward(request, response);
+        HttpSession session = request.getSession(false);
+        if (session != null) {
+            session.invalidate();
         }
         
+        response.setContentType(
+                    "text/html;charset=UTF-8");
+
+            PrintWriter out = response.getWriter();
+            out.println("<html><head>");
+            out.println("<title>Title</title></head><body>");
+            out.println("Usuario saiu do sistema!<br/>");
+            out.println("<a href=\"index.html\">Retornar para login</a>");
+            out.println("</body></html>");
+            out.close();
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
