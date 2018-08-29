@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.ufpr.tads.web2.servlets.StartupServlet;
+package com.ufpr.tads.web2.beans.ConfigBean;
 
 import java.io.Serializable;
 

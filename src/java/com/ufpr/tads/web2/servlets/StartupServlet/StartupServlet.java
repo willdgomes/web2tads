@@ -5,6 +5,7 @@
  */
 package com.ufpr.tads.web2.servlets.StartupServlet;
 
+import com.ufpr.tads.web2.beans.ConfigBean.ConfigBean;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletConfig;
@@ -19,7 +20,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author gomes
  */
-@WebServlet(name = "StartupServlet", urlPatterns = {"/StartupServlet"})
+@WebServlet(name = "StartupServlet", urlPatterns = {"/StartupServlet"},
+        loadOnStartup=1)
 public class StartupServlet extends HttpServlet {
 
     

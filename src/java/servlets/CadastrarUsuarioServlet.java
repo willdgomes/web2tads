@@ -5,8 +5,8 @@
  */
 package servlets;
 
-import Beans.Usuario;
-import DAO.UsuarioDAO;
+import com.ufpr.tads.web2.beans.Usuario.Usuario;
+import com.ufpr.tads.web2.dao.UsuarioDAO.UsuarioDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;

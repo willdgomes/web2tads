@@ -5,8 +5,9 @@
  */
 package com.ufpr.tads.web2.servlets.LoginServlet;
 
-import Beans.Usuario;
-import DAO.UsuarioDAO;
+import com.ufpr.tads.web2.beans.Usuario.Usuario;
+import com.ufpr.tads.web2.dao.UsuarioDAO.UsuarioDAO;
+import com.ufpr.tads.web2.beans.LoginBean.LoginBean;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -35,7 +36,7 @@ public class LoginServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+        LoginBean loginBean = new LoginBean();
         HttpSession session = request.getSession();
         String login = request.getParameter("login");
         String senha = request.getParameter("senha");
@@ -45,15 +46,17 @@ public class LoginServlet extends HttpServlet {
         usuario = usuarioDAO.lerUsuario(login, senha);
         
         if (usuario != null) {
+            loginBean.setId(usuario.getId());
+            loginBean.setNomeUsuario(usuario.getNome());
             session = request.getSession();
-            session.setAttribute("usuario", usuario);
+            session.setAttribute("usuario", loginBean);
             session.setMaxInactiveInterval(20 * 60);
             RequestDispatcher rd = null;
-            rd = getServletContext().getRequestDispatcher("/PortalServlet");
+            rd = getServletContext().getRequestDispatcher("/portal.jsp");
             rd.include(request, response);
         }else{
             RequestDispatcher rd = request.
-                    getRequestDispatcher("ErroServlet");
+                    getRequestDispatcher("/erro.jsp");
             request.setAttribute("msg", "Sessao expirou");
             request.setAttribute("page", "index.html");
             rd.forward(request, response);
