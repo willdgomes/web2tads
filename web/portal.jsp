@@ -15,7 +15,7 @@
     <body>
         <jsp:useBean id="u" scope="session" class="com.ufpr.tads.web2.beans.LoginBean.LoginBean"/>
         <%
-            u.setNomeUsuario(request.getParameter("usuario"));
+            u = (LoginBean)request.getAttribute("usuario");
             String user = u.getNomeUsuario();
         %>
         <h1>nome: <%=user%></h1>
