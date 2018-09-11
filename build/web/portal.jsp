@@ -15,9 +15,18 @@
     <body>
         <jsp:useBean id="u" scope="session" class="com.ufpr.tads.web2.beans.LoginBean.LoginBean"/>
         <%
-            u = (LoginBean)request.getAttribute("usuario");
-            String user = u.getNomeUsuario();
+            if (session.getAttribute("usuario") == null) {
+            session.invalidate();
+            RequestDispatcher rd = request.
+                    getRequestDispatcher("erro.jsp");
+            request.setAttribute("msg", "Sessao expirou");
+            request.setAttribute("page", "index.html");
+            rd.forward(request, response);
+        } else {
+                u = request.getParameter("usuario");
+                u.getNomeUsuario();
+        }
+            
         %>
-        <h1>nome: <%=user%></h1>
     </body>
 </html>
