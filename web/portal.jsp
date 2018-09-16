@@ -14,9 +14,8 @@
     </head>
     <body>
         <jsp:useBean id="u" scope="session" class="com.ufpr.tads.web2.beans.LoginBean.LoginBean"/>
-        <jsp:setProperty name="u" property="usuario" />
-        <jsp:getProperty name="u" property="usuario" />
         <%
+            String t = null;
             if (session.getAttribute("usuario") == null) {
             session.invalidate();
             RequestDispatcher rd = request.
@@ -24,8 +23,12 @@
             request.setAttribute("msg", "Usuário deve autenticar para acessar o sistema!");
             rd.forward(request, response);
         } else {
+                
+                u = (LoginBean) session.getAttribute("usuario");
+                t = u.getNomeUsuario();
         }
             
         %>
+        <h3>nome: <jsp:getProperty name="u" property="nomeUsuario"/></h3>
     </body>
 </html>
