@@ -14,6 +14,8 @@
     </head>
     <body>
         <jsp:useBean id="u" scope="session" class="com.ufpr.tads.web2.beans.LoginBean.LoginBean"/>
+        <jsp:setProperty name="u" property="usuario" />
+        <jsp:getProperty name="u" property="usuario" />
         <%
             if (session.getAttribute("usuario") == null) {
             session.invalidate();
