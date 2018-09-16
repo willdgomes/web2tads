@@ -56,9 +56,8 @@ public class LoginServlet extends HttpServlet {
             rd.include(request, response);
         }else{
             RequestDispatcher rd = request.
-                    getRequestDispatcher("/erro.jsp");
-            request.setAttribute("msg", "Sessao expirou");
-            request.setAttribute("page", "index.html");
+                    getRequestDispatcher("/index.jsp");
+            request.setAttribute("msg", "Usuário/Senha Inválidos");
             rd.forward(request, response);
         }
         

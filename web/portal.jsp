@@ -18,13 +18,10 @@
             if (session.getAttribute("usuario") == null) {
             session.invalidate();
             RequestDispatcher rd = request.
-                    getRequestDispatcher("erro.jsp");
-            request.setAttribute("msg", "Sessao expirou");
-            request.setAttribute("page", "index.html");
+                    getRequestDispatcher("index.jsp");
+            request.setAttribute("msg", "Usuário deve autenticar para acessar o sistema!");
             rd.forward(request, response);
         } else {
-                u = request.getParameter("usuario");
-                u.getNomeUsuario();
         }
             
         %>

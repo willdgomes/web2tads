@@ -1,9 +1,11 @@
+<%-- 
+        Document   : index
+    Created on : 16/09/2018, 15:37:19
+    Author     : gomes
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -20,6 +22,8 @@ and open the template in the editor.
 
   </head>
   <body>
+      <h4>${msg}</h4>
+      <h4>${param.msg}</h4>
     <br><br><br>
     <h3 class="text-center"> Login </h3>
     <div class="container-fluid">
