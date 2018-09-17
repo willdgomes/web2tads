@@ -17,7 +17,7 @@ public class ConnectionFactory {
     public static Connection getConnection() throws SQLException{
         try{
             DriverManager.registerDriver(new com.mysql.jdbc.Driver());
-        return DriverManager.getConnection("jdbc:mysql://localhost/banco_web2", "root", "root");
+        return DriverManager.getConnection("jdbc:mysql://localhost/banco_web2?useSSL=false", "root", "root");
         }catch(SQLException e){
             throw new RuntimeException(e);
         }
