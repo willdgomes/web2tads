@@ -12,6 +12,8 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>erro!</h1>
+        <h4>${msg}</h4>
+        <h4>${param.msg}</h4>
+        <a href=${param.page}>${page}</a>
     </body>
 </html>

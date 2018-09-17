@@ -3,11 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.ufpr.tads.web2.servlets.LoginServlet;
+package com.ufpr.tads.web2.servlets.ClientesServlet;
 
-import com.ufpr.tads.web2.beans.Usuario.Usuario;
-import com.ufpr.tads.web2.dao.UsuarioDAO.UsuarioDAO;
-import com.ufpr.tads.web2.beans.LoginBean.LoginBean;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -22,8 +19,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author gomes
  */
-@WebServlet(name = "LoginServlet", urlPatterns = {"/LoginServlet"})
-public class LoginServlet extends HttpServlet {
+@WebServlet(name = "ClientesServlet", urlPatterns = {"/ClientesServlet"})
+public class ClientesServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,32 +33,14 @@ public class LoginServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        LoginBean loginBean = new LoginBean();
-        HttpSession session = request.getSession();
-        String login = request.getParameter("login");
-        String senha = request.getParameter("senha");
         
-        Usuario usuario = new Usuario();
-        UsuarioDAO usuarioDAO = new UsuarioDAO();
-        usuario = usuarioDAO.lerUsuario(login, senha);
-        
-        if (usuario != null) {
-            loginBean.setId(usuario.getId());
-            loginBean.setNomeUsuario(usuario.getNome());
-            session = request.getSession();
-            session.setAttribute("usuario", loginBean);
-            session.setMaxInactiveInterval(20 * 60);
-            RequestDispatcher rd = null;
-            rd = getServletContext().getRequestDispatcher("/portal.jsp");
-            rd.include(request, response);
-        }else{
+        HttpSession session = request.getSession(false);
+        if (session == null) {
             RequestDispatcher rd = request.
                     getRequestDispatcher("/index.jsp");
-            request.setAttribute("msg", "Usuário/Senha Inválidos");
-           // request.setAttribute("page", "index.jsp");
+            request.setAttribute("msg", "Usuário deve se autenticar para acessar o sistema!");
             rd.forward(request, response);
         }
-        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
