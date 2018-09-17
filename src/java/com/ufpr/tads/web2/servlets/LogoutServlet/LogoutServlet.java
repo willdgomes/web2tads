@@ -7,6 +7,7 @@ package com.ufpr.tads.web2.servlets.LogoutServlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -37,17 +38,10 @@ public class LogoutServlet extends HttpServlet {
         if (session != null) {
             session.invalidate();
         }
-        
-        response.setContentType(
-                    "text/html;charset=UTF-8");
-
-            PrintWriter out = response.getWriter();
-            out.println("<html><head>");
-            out.println("<title>Title</title></head><body>");
-            out.println("Usuario saiu do sistema!<br/>");
-            out.println("<a href=\"index.html\">Retornar para login</a>");
-            out.println("</body></html>");
-            out.close();
+        RequestDispatcher rd = request.
+                    getRequestDispatcher("/index.jsp");
+            request.setAttribute("msg", "Usuário desconectado com sucesso!");
+            rd.forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
