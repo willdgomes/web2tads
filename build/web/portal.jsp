@@ -39,6 +39,7 @@
 </head>
 <body>
     <jsp:useBean id="u" scope="session" class="com.ufpr.tads.web2.beans.LoginBean.LoginBean"/>
+    <jsp:getProperty name="u" property="nomeUsuario"/>
     <%
         String t = null;
         if (session.getAttribute("usuario") == null) {
