@@ -5,13 +5,14 @@
  */
 package com.ufpr.tads.web2.beans.Cliente;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  *
  * @author gomes
  */
-public class Cliente {
+public class Cliente implements Serializable {
     
     private int idCliente;
     private String cpfCliente;
@@ -23,6 +24,10 @@ public class Cliente {
     private String cepCliente;
     private String cidadeCliente;
     private String ufCliente;
+    
+    public void Cliente(){
+        
+    }
 
     public int getIdCliente() {
         return idCliente;

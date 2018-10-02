@@ -5,11 +5,13 @@
  */
 package com.ufpr.tads.web2.beans.Usuario;
 
+import java.io.Serializable;
+
 /**
  *
  * @author gomes
  */
-public class Usuario {
+public class Usuario implements Serializable {
     
     int id;
     String login;
