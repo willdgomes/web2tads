@@ -16,6 +16,10 @@ public class LoginBean implements Serializable {
     private int id;
     private String nomeUsuario;
     
+    public void LoginBean(){
+        
+    }
+    
     public int getId() {
         return id;
     }
