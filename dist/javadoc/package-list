@@ -1,0 +1,12 @@
+com.ufpr.tads.web2.beans.Cliente
+com.ufpr.tads.web2.beans.ConfigBean
+com.ufpr.tads.web2.beans.LoginBean
+com.ufpr.tads.web2.beans.Usuario
+com.ufpr.tads.web2.dao.ClienteDAO
+com.ufpr.tads.web2.dao.ConnectionFactory
+com.ufpr.tads.web2.dao.UsuarioDAO
+com.ufpr.tads.web2.servlets.ClientesServlet
+com.ufpr.tads.web2.servlets.LoginServlet
+com.ufpr.tads.web2.servlets.LogoutServlet
+com.ufpr.tads.web2.servlets.StartupServlet
+servlets
